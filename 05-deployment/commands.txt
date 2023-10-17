@@ -1,0 +1,18 @@
+pyenv install 3.10
+pyenv versions
+pyenv global 3.10
+
+pip install --user pipenv
+
+# activate 
+pipenv shell
+
+# Check version of Python
+python --version
+
+gunicorn --bind=0.0.0.0:9696 "predict:app"
+pipenv run gunicorn --bind=0.0.0.0:9696 "predict:app"
+
+docker run -it --rm --entrypoint=bash credit-prediction
+docker run -it -p 9696:9696 credit-prediction:latest
+docker build --no-cache -t credit-prediction .
